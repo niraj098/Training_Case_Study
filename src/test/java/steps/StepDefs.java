@@ -1,6 +1,7 @@
 package steps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -42,15 +43,13 @@ public class StepDefs {
         caps.setCapability("browserstack.debug", "true");
         caps.setCapability("project", "Browserstack Demo");
         caps.setCapability("name", "BS Test");
-        try {
-            WebDriver bs_driver = new RemoteWebDriver(new URL(URL), caps);
-            bs_driver.get("https://www.selenium.dev/");
-            String strTitle = bs_driver.getTitle();
-            Assert.assertEquals(strTitle, "SeleniumHQ Browser Automation");
-            bs_driver.quit();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        //WebDriver bs_driver = new RemoteWebDriver(new URL(URL), caps);
+        driver.get("https://www.selenium.dev/");
+        String strTitle = driver.getTitle();
+        //Assert.assertEquals(strTitle, "SeleniumHQ Browser Automation");
+        driver.quit();
 
     }
 }
