@@ -3,11 +3,14 @@ import cucumber.api.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import base.BaseClass;
 import io.cucumber.java.en.Given;
 import org.testng.Assert;
+
+import java.util.ArrayList;
 
 import static pageElements.amazon.AmazonPageElements.*;
 
@@ -56,6 +59,41 @@ public class AmazonStepDefs extends BaseClass {
         wait.until(ExpectedConditions.visibilityOfElementLocated(invalidPwdErrorMessage));
         String errorMessage= driver.findElement(invalidPwdErrorMessage).getText();
         Assert.assertTrue(errorMessage.contains("Your password is incorrect"),"ErrorMessage should be displayed");
+    }
+
+    @When("User searches for product {string}")
+    public void userSearchesForProduct(String searchProduct) {
+        wait.until(ExpectedConditions.elementToBeClickable(searchBox));
+        WebElement srchBox=driver.findElement(searchBox);
+        srchBox.sendKeys(searchProduct);
+        srchBox.sendKeys(Keys.ENTER);
+    }
+
+    @Then("Relevant search for corresponding {string} should be displayed")
+    public void relevantSearchForCorrespondingShouldBeDisplayed(String searchProduct) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(searchResult));
+        WebElement srchResult= driver.findElement(searchResult);
+        Assert.assertTrue(srchResult.getText().contains(searchProduct),"Relevant search result is not displayed");
+    }
+
+    @And("User opens details page for first product")
+    public void userOpensDetailsPageForFirstProduct() {
+        WebElement firstSrchResult= driver.findElement(firstSearchResult);
+        firstSrchResult.click();
+    }
+
+    @Then("User should be able to see 'MRP'")
+    public void userShouldBeAbleToSeeMRP() {
+        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        WebElement mrpText= driver.findElement(mRPText);
+        Assert.assertTrue(mrpText.getText().contains("M.R.P"),"MRP should be displayed");
+    }
+
+    @And("'Buy Now' button must be enabled")
+    public void buttonMustBeEnabled() {
+        WebElement buyNowBtn= driver.findElement(buyNowButton);
+        Assert.assertTrue(buyNowBtn.isEnabled(),"Buy Now button should be enabled");
     }
 
     @After

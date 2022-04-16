@@ -9,6 +9,14 @@ Feature: Amazon Tests
     Then  User should be displayed with proper error message
 
 
-  Scenario: Validate Unsuccessful Login
+  Scenario Outline: Validate search results for amazon product
     Given Launch Amazon Website
-    When  User Clicks on 'Sign In' button
+    When  User searches for product "<product>"
+    Then  Relevant search for corresponding "<product>" should be displayed
+    And   User opens details page for first product
+    Then  User should be able to see 'MRP'
+    And   'Buy Now' button must be enabled
+    Examples:
+      | product |
+      | alexa   |
+      | echo    |
