@@ -1,10 +1,10 @@
-package steps;
-import Util.Util;
+package steps.myntra;
+
+import base.BaseClass;
 import io.cucumber.java.en.Given;
 import org.junit.Assert;
 
-
-public class MyntraStepDefs extends Util {
+public class MyntraStepDefs extends BaseClass {
 
     @Given("Launch Myntra Website")
     public void launchMyntraWebsite() {
@@ -13,5 +13,4 @@ public class MyntraStepDefs extends Util {
         Assert.assertTrue(strTitle.contains("Online Shopping"));
         driver.quit();
     }
-
 }
