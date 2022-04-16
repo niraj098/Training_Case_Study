@@ -1,5 +1,5 @@
-Feature: Browserstack Tests
+Feature: Amazon Tests
 
-  Scenario: Run tests in Browserstack
+  Scenario: Run tests for Amazon Site
 
-    Given Launch website in BS
+    Given Launch Amazon Website
