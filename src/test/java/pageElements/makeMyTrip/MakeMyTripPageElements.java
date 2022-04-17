@@ -10,7 +10,6 @@ public class MakeMyTripPageElements {
     public static By toCity= By.xpath("//input[@data-cy='toCity']");
     public static By toCityTextBox= By.xpath("//input[@placeholder='To']");
     public static By departureDate= By.xpath("//p[@data-cy='departureDate']");
-    public static By selectDepartureDate= By.xpath("//div[@aria-label='Fri May 20 2022']");
     public static By searchButton = By.xpath("//a[contains(text(),'Search')]");
     public static By paylaterButton = By.xpath("//button[contains(text(),'OKAY, GOT IT!')]");
     public static By viewPricesButton = By.xpath("//span[contains(text(),'View Prices')]");
@@ -29,5 +28,7 @@ public class MakeMyTripPageElements {
     public static By payNowButton = By.xpath("//span[contains(text(),'pay now')]");
     public static By selectDefaultSeat= By.xpath("//button[contains(text(),'Yes, Please')]");
 
-
+    public static By getDepartureDate(String departureDate) {
+        return By.xpath("//div[contains(@aria-label,'" + departureDate + "')]");
+    }
 }

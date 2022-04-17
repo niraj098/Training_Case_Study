@@ -96,8 +96,6 @@ public class AmazonStepDefs extends BaseClass {
         Assert.assertTrue(buyNowBtn.isEnabled(),"Buy Now button should be enabled");
     }
 
-
-
     @And("click on 'Buy Now' Button")
     public void clickOnBuyNowButton() {
         driver.findElement(buyNowButton).click();

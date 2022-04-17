@@ -34,10 +34,6 @@ public class MakeMyTripStepDefs extends BaseClass {
 
     @And("User selects from {string}")
     public void userSelectsFrom(String city) throws InterruptedException {
-        /*JavascriptExecutor js = (JavascriptExecutor) driver;
-        wait.until(ExpectedConditions.visibilityOfElementLocated(outsideModal));
-        WebElement flightMenuOption =driver.findElement(outsideModal);
-        js.executeScript("arguments[0].click();", flightMenuOption);*/
         driver.findElement(outsideModal).click();
         wait.until(ExpectedConditions.elementToBeClickable(fromCity));
         driver.findElement(fromCity).click();
@@ -51,11 +47,10 @@ public class MakeMyTripStepDefs extends BaseClass {
 
     @And("User selects to {string}")
     public void userSelectsTo(String city) throws InterruptedException {
-        //JavascriptExecutor js = (JavascriptExecutor) driver;
         wait.until(ExpectedConditions.elementToBeClickable(toCity));
         WebElement toCityDropDown =driver.findElement(toCity);
         js.executeScript("arguments[0].click();", toCityDropDown);
-        //driver.findElement(toCity).click();
+        Thread.sleep(1000);
         wait.until(ExpectedConditions.elementToBeClickable(toCityTextBox));
         WebElement toCityTxtBox= driver.findElement(toCityTextBox);
         toCityTxtBox.sendKeys(city);
@@ -68,10 +63,9 @@ public class MakeMyTripStepDefs extends BaseClass {
     public void userSelects(String date) throws InterruptedException {
         wait.until(ExpectedConditions.elementToBeClickable(departureDate));
         js.executeScript("arguments[0].click();", driver.findElement(departureDate));
-        //driver.findElement(departureDate).click();
-        Thread.sleep(2000);
-        wait.until(ExpectedConditions.elementToBeClickable(selectDepartureDate));
-        driver.findElement(selectDepartureDate).click();
+        Thread.sleep(1000);
+        wait.until(ExpectedConditions.elementToBeClickable(getDepartureDate(date)));
+        driver.findElement(getDepartureDate(date)).click();
     }
 
     @And("User clicks on search button")
@@ -138,14 +132,12 @@ public class MakeMyTripStepDefs extends BaseClass {
     public void userConfirmsDetails() throws InterruptedException {
         Thread.sleep(3000);
         wait.until(ExpectedConditions.elementToBeClickable(confirmButton));
-        //driver.findElement(confirmButton).click();
         js.executeScript("arguments[0].click();", driver.findElement(confirmButton));
     }
 
     @And("User review AddOns")
     public void userReviewAddOns() {
         wait.until(ExpectedConditions.elementToBeClickable(reviewAddOns));
-        //driver.findElement(reviewAddOns).click();
         js.executeScript("arguments[0].click();", driver.findElement(reviewAddOns));
     }
 

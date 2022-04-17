@@ -1,6 +1,6 @@
 Feature: MakeMyTrip Tests
 
-  Scenario Outline: Validate invalid login
+  Scenario Outline: Validate Payment options
 
     Given Launch MakeMyTrip Website
     And   User selects from "<fromCity>"
@@ -19,11 +19,7 @@ Feature: MakeMyTrip Tests
     And   User review AddOns
     When  User clicks Proceed to pay button
     Then  User must be displayed with payment options with Pay Now Button
+
     Examples:
       | fromCity | toCity    | departureDate | First Name | Last Name | Mobile Number | Email   |
-      | Chennai  | Bengaluru |               | kumar      | Kumar     | 1234567890    | a@a.com |
-
-
-
-
-
+      | Chennai  | Bengaluru | May 21        | kumar      | Kumar     | 1234567890    | a@a.com |
