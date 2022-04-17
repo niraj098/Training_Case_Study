@@ -96,8 +96,17 @@ public class AmazonStepDefs extends BaseClass {
         Assert.assertTrue(buyNowBtn.isEnabled(),"Buy Now button should be enabled");
     }
 
-    @After
-    public void after(){
-        driver.quit();
+
+
+    @And("click on 'Buy Now' Button")
+    public void clickOnBuyNowButton() {
+        driver.findElement(buyNowButton).click();
+    }
+
+    @And("User must be directed to login page")
+    public void userMustBeDirectedToLoginPage() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(signInText));
+        String signInTextInPage = driver.findElement(signInText).getText();
+        Assert.assertTrue(signInTextInPage.contains("Sign-In"),"Sign In Page is not diplayed");
     }
 }

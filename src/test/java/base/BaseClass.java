@@ -1,5 +1,6 @@
 package base;
 
+import cucumber.api.java.After;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,9 +14,6 @@ public class BaseClass {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        wait =  new WebDriverWait(driver,60);
+        wait =  new WebDriverWait(driver,30);
     }
-
-
-
 }

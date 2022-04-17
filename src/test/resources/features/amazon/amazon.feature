@@ -16,6 +16,8 @@ Feature: Amazon Tests
     And   User opens details page for first product
     Then  User should be able to see 'MRP'
     And   'Buy Now' button must be enabled
+    And   click on 'Buy Now' Button
+    And   User must be directed to login page
     Examples:
       | product |
       | alexa   |
