@@ -3,6 +3,7 @@ import cucumber.api.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.apache.commons.math3.analysis.function.Exp;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -26,7 +27,8 @@ public class AmazonStepDefs extends BaseClass {
     }
 
     @When("User Clicks on 'Sign In' button")
-    public void userClicksOnSignInButton() {
+    public void userClicksOnSignInButton() throws InterruptedException {
+        Thread.sleep(2000);
         wait.until(ExpectedConditions.elementToBeClickable(signInButton));
         WebElement signInBtn = driver.findElement(signInButton);
         signInBtn.click();
@@ -86,12 +88,16 @@ public class AmazonStepDefs extends BaseClass {
     public void userShouldBeAbleToSeeMRP() {
         ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
+        wait.until(ExpectedConditions.elementToBeClickable(mRPText));
         WebElement mrpText= driver.findElement(mRPText);
         Assert.assertTrue(mrpText.getText().contains("M.R.P"),"MRP should be displayed");
     }
 
     @And("'Buy Now' button must be enabled")
     public void buttonMustBeEnabled() {
+        ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        wait.until(ExpectedConditions.elementToBeClickable(buyNowButton));
         WebElement buyNowBtn= driver.findElement(buyNowButton);
         Assert.assertTrue(buyNowBtn.isEnabled(),"Buy Now button should be enabled");
     }
