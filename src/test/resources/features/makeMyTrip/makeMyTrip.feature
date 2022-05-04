@@ -22,4 +22,4 @@ Feature: MakeMyTrip Tests
 
     Examples:
       | fromCity | toCity    | departureDate | First Name | Last Name | Mobile Number | Email   |
-      | Chennai  | Bengaluru | May 21        | kumar      | Kumar     | 1234567890    | a@a.com |
+      | Chennai  | Bengaluru | May 10        | kumar      | Kumar     | 1234567890    | a@a.com |
