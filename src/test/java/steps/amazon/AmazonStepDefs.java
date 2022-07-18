@@ -21,6 +21,7 @@ public class AmazonStepDefs extends BaseClass {
 
     @Given("Launch Amazon Website")
     public void launchAmazonWebsite() {
+        // This is just for test
         driver.get("https://www.amazon.in/");
         String strTitle = driver.getTitle();
         Assert.assertTrue(strTitle.contains("Online Shopping"));
